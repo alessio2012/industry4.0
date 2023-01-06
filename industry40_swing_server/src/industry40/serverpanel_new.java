@@ -198,7 +198,7 @@ public class serverpanel_new extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(serverpanel_new.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         btn_stopServer.setEnabled(false);
         spn_serverPort.setEnabled(true);
         btn_startServer.setEnabled(true);
@@ -213,6 +213,7 @@ public class serverpanel_new extends javax.swing.JFrame {
         btn_stopServer.setEnabled(true);
         spn_serverPort.setEnabled(false);
         btn_startServer.setEnabled(false);
+
     }//GEN-LAST:event_btn_startServerActionPerformed
 
     /**

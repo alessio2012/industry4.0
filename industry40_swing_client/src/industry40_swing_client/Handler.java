@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Ale
  */
-public class commandHandle implements Runnable {
+public class Handler implements Runnable {
     private BufferedReader sIN;
     private PrintWriter sOUT;
     private Thread executer;
@@ -27,24 +27,27 @@ public class commandHandle implements Runnable {
         executer.start();
     }
     
-    
     public String sendCommand( String command ) {
         String rispostaRicevuta = null;
         
+        System.out.println("Ho letto questo comando: " + command );
         sOUT.println( command );
         sOUT.flush();
+        System.out.println("Ho inviato il comando " + command );
 
-          try {
-              rispostaRicevuta = sIN.readLine();
-          } catch (IOException ex) {
-              Logger.getLogger(commandHandle.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        
+        try {
+            System.out.println("Ho ricevuto questa risposta " + rispostaRicevuta );
+            rispostaRicevuta = sIN.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(Handler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return rispostaRicevuta;
     }
     
+    @Override
     public void run() {
-            System.out.println( "@dicaprioale | CLIENT: Immettere un comando [ Quit per uscire ]" );
+        System.out.println( "@dicaprioale | CLIENT: Immettere un comando [ Quit per uscire ]" );
     }
     
 }

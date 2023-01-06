@@ -39,6 +39,14 @@ public class ConnessioneClient implements Runnable {
 
 
   }
+  
+  public void closeStreams() throws IOException {
+      in.close();
+      out.close();
+      return;
+  }
+  
+  
 
   @Override
   public void run() {
@@ -60,7 +68,7 @@ public class ConnessioneClient implements Runnable {
 
       }
 
-      connection.close();
+      
       System.out.println( "@dicaprioale | SERVER:  Il client si è disconnesso" );
 
     } catch (Exception e) {
