@@ -47,7 +47,7 @@ public class ServerPuntiDiVerifica implements Runnable {
 
           connection = serverSocket.accept();
           System.out.println("@dicaprioale | SERVER: Ho individuato una richiesta. Connessione avvenuta con successo");
-          new ConnessioneClient( connection, this );                 
+          ConnessioneClient connessioneClient = new ConnessioneClient( connection, this );                 
 
         }
 

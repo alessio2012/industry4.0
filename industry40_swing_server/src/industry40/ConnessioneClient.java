@@ -2,7 +2,6 @@ package industry40;
 
 import java.io.*;
 import java.net.Socket;
-import industry40.Comando;
 
 public class ConnessioneClient implements Runnable {
   private Socket connection = null;
@@ -33,11 +32,10 @@ public class ConnessioneClient implements Runnable {
       in = new InputStreamReader( connessione.getInputStream() );
       sIN = new BufferedReader( in );
     } catch (IOException e) {
-      e.printStackTrace();
     }
 
     new Thread(this).start();
-    System.out.println( "@dicaprioale | SERVER: Il client si è connesso! " );
+    System.out.println("@dicaprioale | SERVER: Connessione instaurata");
 
 
   }
@@ -45,10 +43,11 @@ public class ConnessioneClient implements Runnable {
   @Override
   public void run() {
     try {
-
+      System.out.println("Classe ConnessioneClient: thread in esecuzione");
       while( true ) {
                                                                                   // LETTURA DEL COMANDO RICEVUTO
         comandoRicevuto = sIN.readLine();
+        System.out.println("Comando ricevuto > " + comandoRicevuto );
 
                                                                                   // CONTROLLO SE IL COMANDO E' DI CHIUSURA
         if( comandoRicevuto.equalsIgnoreCase(Comando.QUIT)) {

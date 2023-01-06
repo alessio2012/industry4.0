@@ -47,7 +47,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="jTabbedPane1" min="-2" pref="438" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="txtArea_sendCommand" min="-2" pref="438" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_sendCommand" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane2" min="-2" pref="504" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,6 +65,16 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jTabbedPane1" pref="535" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="442" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtArea_sendCommand" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_sendCommand" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,16 +104,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtArea_sendCommand" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_sendCommand" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -105,14 +118,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_sendCommand" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtArea_sendCommand" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="229" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -133,19 +139,17 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btn_disconnectServer" pref="278" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btn_connectServer" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lbl_serverPort" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbl_serverAddress" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtField_serverPort" max="32767" attributes="0"/>
-                                          <Component id="txtField_serverAddress" pref="159" max="32767" attributes="0"/>
-                                      </Group>
+                              <Component id="btn_disconnectServer" max="32767" attributes="0"/>
+                              <Component id="btn_connectServer" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lbl_serverPort" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_serverAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtField_serverPort" max="32767" attributes="0"/>
+                                      <Component id="txtField_serverAddress" pref="159" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -230,18 +234,16 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lbl_tempoDiConnessione" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbl_tempoDiConnessione" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbl_connectionStatus" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_clientID1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblOutput_clientID" max="32767" attributes="0"/>
                               <Component id="progressBar_connectionStatus" max="32767" attributes="0"/>
-                              <Component id="lblOutput_connectionTime" max="32767" attributes="0"/>
+                              <Component id="lblOutput_lastConnection" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                          <EmptySpace pref="121" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -255,15 +257,10 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_clientID1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblOutput_clientID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbl_tempoDiConnessione" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblOutput_connectionTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblOutput_lastConnection" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -271,7 +268,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="lbl_connectionStatus">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="STATO CONNESSIONE: "/>
+                    <Property name="text" type="java.lang.String" value="STATO CONNESSIONE:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JProgressBar" name="progressBar_connectionStatus">
@@ -283,27 +280,12 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblOutput_clientID">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=" "/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder/>
-                      </Border>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbl_clientID1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="CLIENT ID:"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lbl_tempoDiConnessione">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="TEMPO DI CONNESSIONE:"/>
+                    <Property name="text" type="java.lang.String" value="ULTIMA CONNESSIONE:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblOutput_connectionTime">
+                <Component class="javax.swing.JLabel" name="lblOutput_lastConnection">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=" "/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -315,35 +297,38 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTextArea" name="txtArea_consoleLog">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="columns" type="int" value="20"/>
-                    <Property name="rows" type="int" value="5"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="btn_sendCommand">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="INVIA"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtArea_sendCommand">
-              <Properties>
-                <Property name="text" type="java.lang.String" value=" "/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txtArea_consoleLog">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JTextField" name="txtArea_sendCommand">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_sendCommand">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="INVIA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_sendCommandActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
