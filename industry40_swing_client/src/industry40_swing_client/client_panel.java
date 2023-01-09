@@ -15,10 +15,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -32,8 +34,8 @@ import javax.swing.Timer;
 public class client_panel extends javax.swing.JFrame {
     
     ArrayList<String> clientCronology = new ArrayList<String>();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuuuu HH:mm:ss");
-    LocalDateTime dateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    LocalTime time = LocalTime.now();
     
     Socket connessione = null;
     String server;
@@ -44,16 +46,16 @@ public class client_panel extends javax.swing.JFrame {
     PrintWriter sOUT;
     
     Handler command;
-    checkConnection checkConnection_variable;
 
     /**
      * Creates new form serverpanel_new
      */
     public client_panel() {
         command = new Handler();
-        checkConnection_variable = new checkConnection();
+
         initComponents();
         btn_disconnectServer.setEnabled( false );
+        
         
     }
 
@@ -69,7 +71,7 @@ public class client_panel extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lbl_serverAddress = new javax.swing.JLabel();
@@ -88,10 +90,6 @@ public class client_panel extends javax.swing.JFrame {
         txtArea_consoleLog = new javax.swing.JTextArea();
         txtArea_sendCommand = new javax.swing.JTextField();
         btn_sendCommand = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        combo_linea = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -215,11 +213,18 @@ public class client_panel extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("CONSOLE LOG"));
 
         txtArea_consoleLog.setEditable(false);
+        txtArea_consoleLog.setBackground(new java.awt.Color(0, 0, 0));
         txtArea_consoleLog.setColumns(20);
+        txtArea_consoleLog.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        txtArea_consoleLog.setForeground(new java.awt.Color(255, 255, 255));
         txtArea_consoleLog.setRows(5);
         jScrollPane2.setViewportView(txtArea_consoleLog);
 
-        txtArea_sendCommand.setText(" ");
+        txtArea_sendCommand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtArea_sendCommandActionPerformed(evt);
+            }
+        });
 
         btn_sendCommand.setText("INVIA");
         btn_sendCommand.addActionListener(new java.awt.event.ActionListener() {
@@ -279,92 +284,74 @@ public class client_panel extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("SERVER SETTINGS", jPanel1);
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("IMPOSTAZIONI LINEA"));
-
-        combo_linea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_lineaActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("SELEZIONA LINEA");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo_linea, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_linea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(674, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("IMPOSTAZIONI LINEA", jPanel5);
+        tabbedPane.addTab("SERVER SETTINGS", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtField_serverAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_serverAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtField_serverAddressActionPerformed
+    private void btn_sendCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendCommandActionPerformed
+        /*
+        String tmpString;
 
-    private void txtField_serverPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_serverPortActionPerformed
+        if (txtArea_sendCommand.getText().indexOf("ADD") == 0) {
+            System.out.println("@dicaprioale | AZIONE: Il client ha eseguito il comando ADD" );
+
+            String nomePdv = txtArea_sendCommand.getText().substring("ADD".length() + 1);                         // ACQUISIZIONE DEL NOME DEL NUOVO PUNTO DI VERIFICA DA GGIUNGERE
+            tabHandler.addNewTab(tabbedPane, nomePdv);
+            
+        } */
+        clientCronology.add( time.format(formatter) + " > " + command.sendCommand( txtArea_sendCommand.getText() ) );
+        txtArea_consoleLog.setText( clientCronology.toString().replace(",", "\n").replace("]", "").replace("[", "") );
+    }//GEN-LAST:event_btn_sendCommandActionPerformed
+
+    private void txtArea_sendCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArea_sendCommandActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtField_serverPortActionPerformed
+    }//GEN-LAST:event_txtArea_sendCommandActionPerformed
+
+    private void btn_disconnectServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_disconnectServerActionPerformed
+        try {
+            connessione.close();
+            System.out.println("Disconnesso!");
+            System.out.println("QUIT");
+
+            btn_disconnectServer.setEnabled( false );
+            btn_connectServer.setEnabled( true );
+            txtField_serverAddress.setEnabled( true );
+            txtField_serverPort.setEnabled( true );
+            progressBar_connectionStatus.setValue(0);
+            time = LocalTime.now();
+            lblOutput_lastConnection.setText( time.format(formatter).toString() );
+            clientCronology.add( time.format(formatter) + " > Disconnesso dal server " + server + ":" + port );
+            txtArea_consoleLog.setText( clientCronology.toString().replace(",", "\n").replace("]", "").replace("[", "") );
+
+        } catch (IOException ex) {
+            Logger.getLogger(client_panel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_disconnectServerActionPerformed
 
     private void btn_connectServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_connectServerActionPerformed
         System.out.println( "Server port:" + txtField_serverPort.getText() );
         if( txtField_serverPort.getText().equals("") ) {
-                JOptionPane.showMessageDialog( this, "Specificare la porta\n", "Errore porta", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this, "Specificare la porta\n", "Errore porta", JOptionPane.ERROR_MESSAGE );
         } else {
             server = txtField_serverAddress.getText();
             port = Integer.parseInt(txtField_serverPort.getText() );
             try {
                 connessione = new Socket( server, port );
-                
+
                 //checkConnection_variable.checkConnection(connessione);
-                
+
                 System.out.println( "@dicaprioale | CLIENT: Connesso al server" );
                 System.out.println("Indirizzo: " + server + ":" + port );
                 System.out.println("Connessione: " + connessione + "\n" );
@@ -373,69 +360,39 @@ public class client_panel extends javax.swing.JFrame {
                 txtField_serverAddress.setEnabled( false );
                 txtField_serverPort.setEnabled( false );
                 progressBar_connectionStatus.setValue(100);
-                clientCronology.add("[" + dateTime + " ] Connesso al server " + server + ":" + port + "\n" );
-                txtArea_consoleLog.setText( clientCronology.toString() );
-                
-                
+                clientCronology.add(time.format(formatter) + " > Connesso al server " + server + ":" + port );
+                txtArea_consoleLog.setText( clientCronology.toString().replace(",", "\n").replace("]", "").replace("[", "") );
+
                 try {
-                  in = new InputStreamReader( connessione.getInputStream() );
-                  sIN = new BufferedReader( in );
+                    in = new InputStreamReader( connessione.getInputStream() );
+                    sIN = new BufferedReader( in );
 
-                  out = connessione.getOutputStream();
-                  sOUT = new PrintWriter( out );
+                    out = connessione.getOutputStream();
+                    sOUT = new PrintWriter( out );
 
-                  input = new InputStreamReader( System.in );
-                  //inTastiera = new BufferedReader( input );
-                  
-                  command.commandHandle( sIN, sOUT );
-                  System.out.println( "@dicaprioale | CLIENT: Inizializzazione completata" );
+                    input = new InputStreamReader( System.in );
+                    //inTastiera = new BufferedReader( input );
+
+                    command.commandHandle( sIN, sOUT );
 
                 } catch (IOException e) {
-                  e.printStackTrace();
+                    e.printStackTrace();
                 }
 
-       
             } catch( IOException e ) {
                 JOptionPane.showMessageDialog( this, "Non sono riuscito a connettermi al server indicato.\nVerificare che la porta e l'indirizzo inserito, siano corretti \n", "Server non trovato", JOptionPane.ERROR_MESSAGE );
             }
 
-            
-            
         }
     }//GEN-LAST:event_btn_connectServerActionPerformed
 
-    private void btn_disconnectServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_disconnectServerActionPerformed
-        try {
-            connessione.close();
-            System.out.println("Disconnesso!");
-            System.out.println("QUIT");
-            
-            btn_disconnectServer.setEnabled( false );
-            btn_connectServer.setEnabled( true );
-            txtField_serverAddress.setEnabled( true );
-            txtField_serverPort.setEnabled( true );
-            progressBar_connectionStatus.setValue(0);
-            dateTime = LocalDateTime.now();
-            lblOutput_lastConnection.setText( dateTime.toString() );
-            clientCronology.add("[" + dateTime + " ] Disconnesso dal server " + server + ":" + port + "\n" );
-            txtArea_consoleLog.setText( clientCronology.toString() );
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(client_panel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btn_disconnectServerActionPerformed
-
-    private void btn_sendCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendCommandActionPerformed
-        String tmpString;
-        clientCronology.add("[" + dateTime + " ] " + command.sendCommand( txtArea_sendCommand.getText() ) + "\n");
-        txtArea_consoleLog.setText( clientCronology.toString() );
-     
-    }//GEN-LAST:event_btn_sendCommandActionPerformed
-
-    private void combo_lineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_lineaActionPerformed
+    private void txtField_serverPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_serverPortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_lineaActionPerformed
+    }//GEN-LAST:event_txtField_serverPortActionPerformed
+
+    private void txtField_serverAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtField_serverAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtField_serverAddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,18 +434,13 @@ public class client_panel extends javax.swing.JFrame {
     private javax.swing.JButton btn_connectServer;
     private javax.swing.JButton btn_disconnectServer;
     private javax.swing.JButton btn_sendCommand;
-    private javax.swing.JComboBox<String> combo_linea;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblOutput_lastConnection;
     private javax.swing.JLabel lbl_connectionStatus;
@@ -496,6 +448,7 @@ public class client_panel extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_serverPort;
     private javax.swing.JLabel lbl_tempoDiConnessione;
     private javax.swing.JProgressBar progressBar_connectionStatus;
+    private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JTextArea txtArea_consoleLog;
     private javax.swing.JTextField txtArea_sendCommand;
     private javax.swing.JTextField txtField_serverAddress;

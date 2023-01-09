@@ -7,6 +7,7 @@ package industry40;
 import java.awt.Font;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,8 +20,8 @@ import java.util.logging.Logger;
 public class serverpanel_new extends javax.swing.JFrame {
     
     ArrayList<String> serverCronology = new ArrayList<String>();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuuuu HH:mm:ss");
-    LocalDateTime dateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    LocalTime time = LocalTime.now();
     ServerPuntiDiVerifica server;
 
     /**
@@ -193,8 +194,8 @@ public class serverpanel_new extends javax.swing.JFrame {
     private void btn_stopServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stopServerActionPerformed
         try {
             server.stopServer();
-            serverCronology.add("[" + dateTime + " ] Server chiuso - " + spn_serverPort.getValue() + "\n" );
-            txtArea_serverConsole.setText( serverCronology.toString() );
+            serverCronology.add(time.format(formatter) + " > Server chiuso - " + spn_serverPort.getValue());
+            txtArea_serverConsole.setText( serverCronology.toString().replace(",", "\n").replace("]", "").replace("[", "") );
         } catch (IOException ex) {
             Logger.getLogger(serverpanel_new.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -207,9 +208,9 @@ public class serverpanel_new extends javax.swing.JFrame {
 
     private void btn_startServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startServerActionPerformed
         server.startServer( (int)spn_serverPort.getValue() );
-        serverCronology.add("[" + dateTime + " ] Server avviato - " + spn_serverPort.getValue() + "\n" );
+        serverCronology.add(time.format(formatter) + " > Server avviato - " + spn_serverPort.getValue());
         serverStatus_progressBar.setValue(100);
-        txtArea_serverConsole.setText( serverCronology.toString() );
+        txtArea_serverConsole.setText( serverCronology.toString().replace(",", "\n").replace("]", "").replace("[", "") );
         btn_stopServer.setEnabled(true);
         spn_serverPort.setEnabled(false);
         btn_startServer.setEnabled(false);
